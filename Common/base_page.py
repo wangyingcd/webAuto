@@ -105,17 +105,16 @@ class BasePage:
         :param doc:
         :return:
         """
-        # 元素可见# 找它
         self.wait_elevisible(loc, timeout, frequency, doc)
         ele = self.get_element(loc, doc)
         try:
             value = ele.get_attribute(attr)
         except:
-            log.error("获取{}元素属性值失败".format(loc))
+            log.error("Failure: Get {}'s element {} failed".format(doc, loc))
             self.do_save_screenshot(doc)
             raise
         else:
-            log.info("获取{}元素属性值成功".format(loc))
+            log.info("Success: Get {}'s element {} successfully".format(doc, loc))
             return value
 
     def do_save_screenshot(self, doc=""):
